@@ -1,7 +1,6 @@
 const http = require("http"),
       fs = require("fs"),
       url = require("url");
-//const { monitorEventLoopDelay } = require("perf_hooks");
       
 http.createServer((request, response) => {
   let addr = request.url,
