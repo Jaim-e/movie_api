@@ -25,3 +25,15 @@ Timestamp: Mon Jun 14 2021 19:17:29 GMT+0200 (hora de verano de Europa central)
 URL: /favicon.ico
 Timestamp: Mon Jun 14 2021 19:17:29 GMT+0200 (hora de verano de Europa central)
 
+URL: /
+Timestamp: Wed Jun 16 2021 17:58:04 GMT+0200 (hora de verano de Europa central)
+
+URL: /favicon.ico
+Timestamp: Wed Jun 16 2021 17:58:05 GMT+0200 (hora de verano de Europa central)
+
+URL: /documentation
+Timestamp: Wed Jun 16 2021 17:58:16 GMT+0200 (hora de verano de Europa central)
+
+URL: /favicon.ico
+Timestamp: Wed Jun 16 2021 17:58:26 GMT+0200 (hora de verano de Europa central)
+
