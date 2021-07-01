@@ -7,10 +7,147 @@
     <title>DOCUMENTATION</title>
   </head>
   <body>
-    <h1>Documentation Page</h1>
-    <p>Welcome to myFlix, dear developers!</p>
-    <p>Here you can find all the instructions you need to access the content of my Movie API, such as movies, directors, genres... </p>
-    <p>You will also be able to sign up, update your personal information and create a list of your favorite movies.</p>
-    <p>Enjoy it!!!</p>
+    <header>
+      <h1>Movie_API Documentation</h1>
+    </header>
+    <main>
+      <p>Movie_API is the server-side component of a web application named myFlix.
+        The web application will provide users with access to information about different movies, directors and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Req. Number</th>
+            <th>Request</th>
+            <th>URL</th>
+            <th>HTTP method</th>
+            <th>Request body data format</th>
+            <th>Response body data format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>HOME</td>
+            <td>/</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Return a list of ALL movies to the user</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the students</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Return data <small>(description, genre, director, image URL, whether it’s featured or not)</small>about a single movie by title to the user</td>
+            <td>/movies/:title</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>                            
+              <p>A JSON object holding data about the movie to show, structured like:</p>
+              <p><small> { <br>
+                  Title: “movie title”, <br>
+                  Year: 19xx<br>
+                  Genre: sci-fi <br>
+                  Director:  Director <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Return data about a genre <small>(description)</small> by name/title</td>
+            <td>/movies/:title/genre</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>
+              <p>A JSON object holding data about the movie to show, structured like:</p>
+              <p><small>{ <br>
+                  Title: “movie title”, <br>
+                  Year: 19xx <br>
+                  Genre: sci-fi <br>
+                  Director: director <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Return data about a director (bio, birth year, death year) by name</td>
+            <td>/movies/:director</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>
+              <p>A JSON object holding data about the movie to show, structured like:</p>
+              <p><small>{ <br>
+                  Director: <br>
+                  Birthdate: <br>
+                  Death year: <br>
+                  Other movies: <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Allow new users to register</td>
+            <td>/users/register</td>
+            <td>POST</td>
+            <td>
+              <p>A JSON object holding data about the user to add, structured like:</p>
+              <p><small>{ <br>
+                  username: “user01”, <br>
+                  name: John Doe <br>
+                  password: password <br>
+                  bio: I love movies <br>
+              }</small></p>
+            </td>
+            <td>
+              <p>A JSON object holding data about the user to add, structured like:</p>
+              <p><small>{ <br>
+                  username: “user01”, <br>
+                  name: John Doe <br>
+                  password: password <br>
+                  bio: I love movies <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Allow users to update their user info <small>(username)</small></td>
+            <td>/users/:username</td>
+            <td>PUT</td>
+            <td>None</td>
+            <td>A confirmation message indicating that the user info has been updated</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Allow users to add a movie to their list of favorites</td>
+            <td>/users/:username/favorites/:movie</td>
+            <td>PUT</td>
+            <td>None</td>
+            <td>A confirmation message indicating that the movie has been added to favorites</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Allow the users to remove a movie from their list of favorites</td>
+            <td>/users/:username/favorites/:movie</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A confirmation message indicating that the movie has been removed</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Allow existing users to deregister</td>
+            <td>/users/deregister/:username</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A confirmation message indicating that the user account has been removed</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
   </body>
 </html>
