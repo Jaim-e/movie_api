@@ -40,7 +40,7 @@
             <td>/movies</td>
             <td>GET</td>
             <td>None</td>
-            <td>A JSON object holding data about all the students</td>
+            <td>A JSON object holding data about all the movies</td>
           </tr>
           <tr>
             <td>2</td>
@@ -50,27 +50,35 @@
             <td>None</td>
             <td>                            
               <p>A JSON object holding data about the movie to show, structured like:</p>
-              <p><small> { <br>
-                  Title: “movie title”, <br>
-                  Year: 19xx<br>
-                  Genre: sci-fi <br>
-                  Director:  Director <br>
+              <p><small>{ <br>
+                  Title: <br>
+                  Description: <br> 
+                  Genre: { <br>
+                    Name: <br>
+                    Description: <br>
+                  }  
+                  Director: { <br>
+                    Name: <br>
+                    Bio: <br>
+                    Birth: <br>
+                    Death: <!-- If applicable --> <br>
+                  }
+                  ImagePath: <br>
+                  Featured: true/false <br> 
               }</small></p>
             </td>
           </tr>
           <tr>
             <td>3</td>
             <td>Return data about a genre <small>(description)</small> by name/title</td>
-            <td>/movies/:title/genre</td>
+            <td>/movies/:genre</td>
             <td>GET</td>
             <td>None</td>
             <td>
-              <p>A JSON object holding data about the movie to show, structured like:</p>
+              <p>A JSON object holding data about the genre to show, structured like:</p>
               <p><small>{ <br>
-                  Title: “movie title”, <br>
-                  Year: 19xx <br>
-                  Genre: sci-fi <br>
-                  Director: director <br>
+                  Name: <br>
+                  Description: <br>           
               }</small></p>
             </td>
           </tr>
@@ -81,12 +89,12 @@
             <td>GET</td>
             <td>None</td>
             <td>
-              <p>A JSON object holding data about the movie to show, structured like:</p>
+              <p>A JSON object holding data about the director to show, structured like:</p>
               <p><small>{ <br>
-                  Director: <br>
+                  Name: <br>
+                  Bio: <br>
                   Birthdate: <br>
-                  Death year: <br>
-                  Other movies: <br>
+                  Deathdate: <br>
               }</small></p>
             </td>
           </tr>
@@ -98,19 +106,21 @@
             <td>
               <p>A JSON object holding data about the user to add, structured like:</p>
               <p><small>{ <br>
-                  username: “user01”, <br>
-                  name: John Doe <br>
-                  password: password <br>
-                  bio: I love movies <br>
+                  Username: "user01", <br>
+                  Password: "password" <br>
+                  Email: "user01@xxx.com" <br>
+                  Birthday: "yyyy-mm-dd" <br>
+                  Favorites: [] <br>
               }</small></p>
             </td>
             <td>
               <p>A JSON object holding data about the user to add, structured like:</p>
               <p><small>{ <br>
-                  username: “user01”, <br>
-                  name: John Doe <br>
-                  password: password <br>
-                  bio: I love movies <br>
+                  Username: "user01", <br>
+                  Password: "password" <br>
+                  Email: "user01@xxx.com" <br>
+                  Birthday: "yyyy-mm-dd" <br>
+                  Favorites: [] <br>
               }</small></p>
             </td>
           </tr>
@@ -136,7 +146,7 @@
             <td>/users/:username/favorites/:movie</td>
             <td>DELETE</td>
             <td>None</td>
-            <td>A confirmation message indicating that the movie has been removed</td>
+            <td>A confirmation message indicating that the movie has been removed from favorites</td>
           </tr>
           <tr>
             <td>9</td>
