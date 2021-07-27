@@ -32,7 +32,7 @@
             <td>/</td>
             <td>None</td>
             <td>None</td>
-            <td>None</td>
+            <td>A confirmation message saying: Welcome to MyFlix!</td>
           </tr>
           <tr>
             <td>1</td>
@@ -44,117 +44,177 @@
           </tr>
           <tr>
             <td>2</td>
-            <td>Return data <small>(description, genre, director, image URL, whether it’s featured or not)</small>about a single movie by title to the user</td>
+            <td>Return data about a single movie by title to the user</td>
             <td>/movies/:title</td>
             <td>GET</td>
             <td>None</td>
             <td>                            
               <p>A JSON object holding data about the movie to show, structured like:</p>
               <p><small>{ <br>
-                  Title: <br>
-                  Description: <br> 
+                  Title: {type: String, required: true} <br>
+                  Description: {type: String, required: true} <br> 
                   Genre: { <br>
-                    Name: <br>
-                    Description: <br>
-                  }  
+                    Name: String <br>
+                    Description: String <br>
+                  } <br>
                   Director: { <br>
-                    Name: <br>
-                    Bio: <br>
-                    Birth: <br>
-                    Death: <!-- If applicable --> <br>
-                  }
-                  ImagePath: <br>
-                  Featured: true/false <br> 
+                    Name: String <br>
+                    Bio: String <br>
+                  } <br>
+                  Actors: [String]<br>
+                  ImagePath: String <br>
+                  Featured: Boolean (true/false) <br> 
               }</small></p>
             </td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Return data about a genre <small>(description)</small> by name/title</td>
-            <td>/movies/:genre</td>
+            <td>Return a list of ALL genres to the user</td>
+            <td>/genres</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the genres</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Return data about a genre by name</td>
+            <td>/genres/:Name</td>
             <td>GET</td>
             <td>None</td>
             <td>
               <p>A JSON object holding data about the genre to show, structured like:</p>
               <p><small>{ <br>
-                  Name: <br>
-                  Description: <br>           
-              }</small></p>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Return data about a director (bio, birth year, death year) by name</td>
-            <td>/movies/:director</td>
-            <td>GET</td>
-            <td>None</td>
-            <td>
-              <p>A JSON object holding data about the director to show, structured like:</p>
-              <p><small>{ <br>
-                  Name: <br>
-                  Bio: <br>
-                  Birthdate: <br>
-                  Deathdate: <br>
+                  Name: {type: String, required: true} <br>
+                  Description: {type: String, required: true} <br>           
               }</small></p>
             </td>
           </tr>
           <tr>
             <td>5</td>
-            <td>Allow new users to register</td>
-            <td>/users/register</td>
-            <td>POST</td>
+            <td>Return data about a director by name</td>
+            <td>/directors/:Name</td>
+            <td>GET</td>
+            <td>None</td>
             <td>
-              <p>A JSON object holding data about the user to add, structured like:</p>
+              <p>A JSON object holding data about the director to show, structured like:</p>
               <p><small>{ <br>
-                  Username: "user01", <br>
-                  Password: "password" <br>
-                  Email: "user01@xxx.com" <br>
-                  Birthday: "yyyy-mm-dd" <br>
-                  Favorites: [] <br>
-              }</small></p>
-            </td>
-            <td>
-              <p>A JSON object holding data about the user to add, structured like:</p>
-              <p><small>{ <br>
-                  Username: "user01", <br>
-                  Password: "password" <br>
-                  Email: "user01@xxx.com" <br>
-                  Birthday: "yyyy-mm-dd" <br>
-                  Favorites: [] <br>
+                  Name: {type: String, required: true} <br>
+                  Bio: {type: String, required: true} <br>
+                  Birthday: Date <br>
+                  Deathday: Date <br>
               }</small></p>
             </td>
           </tr>
           <tr>
             <td>6</td>
-            <td>Allow users to update their user info <small>(username)</small></td>
-            <td>/users/:username/update</td>
-            <td>PUT</td>
+            <td>Return data about a user by username</td>
+            <td>/users/:Username</td>
+            <td>GET</td>
             <td>None</td>
-            <td>A confirmation message indicating that the user info has been updated</td>
+            <td>
+              <p>A JSON object holding data about the user to show, structured like:</p>
+              <p><small>{ <br>
+                  Username: {type: String, required: true} <br>
+                  Password: {type: String, required: true} <br>
+                  Email: {type: String, required: true} <br>
+                  Birthday: Date <br>   
+                  FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
           </tr>
           <tr>
             <td>7</td>
-            <td>Allow users to add a movie to their list of favorites</td>
-            <td>/users/:username/favorites/:movie</td>
-            <td>PUT</td>
-            <td>None</td>
-            <td>A confirmation message indicating that the movie has been added to favorites</td>
+            <td>Allow new users to register</td>
+            <td>/users/</td>
+            <td>POST</td>
+            <td>
+              <p>A JSON object holding data about the user to add, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
+            <td>
+              <p>A JSON object holding data about the user added, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
           </tr>
           <tr>
             <td>8</td>
-            <td>Allow the users to remove a movie from their list of favorites</td>
-            <td>/users/:username/favorites/:movie</td>
-            <td>DELETE</td>
+            <td>Allow users to add a movie to their list of favorites</td>
+            <td>/users/:Username/movies/:MovieID</td>
+            <td>POST</td>
             <td>None</td>
-            <td>A confirmation message indicating that the movie has been removed from favorites</td>
+            <td>
+              <p>A JSON object holding data about the user info with the movie added, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
           </tr>
           <tr>
             <td>9</td>
-            <td>Allow existing users to deregister</td>
-            <td>/users/:username/deregister</td>
+            <td>Allow users to update their info by username</td>
+            <td>/users/:Username</td>
+            <td>PUT</td>
+            <td>
+              <p>A JSON object holding data about the user info to update, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
+            <td>
+              <p>A JSON object holding data about the user info updated, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Allow users to remove a movie from their list of favorites</td>
+            <td>/users/:Username/movies/:MovieID</td>
             <td>DELETE</td>
             <td>None</td>
-            <td>A confirmation message indicating that the user account has been removed</td>
+            <td>
+              <p>A JSON object holding data about the user already without the removed movie, structured like:</p>
+              <p><small>{ <br>
+                Username: {type: String, required: true} <br>
+                Password: {type: String, required: true} <br>
+                Email: {type: String, required: true} <br>
+                Birthday: Date <br>   
+                FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}] <br>
+              }</small></p>
+            </td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Allow existing users to deregister</td>
+            <td>/users/:Username</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A confirmation message indicating that the user account has been deleted</td>
           </tr>
         </tbody>
       </table>
