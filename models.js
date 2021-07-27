@@ -27,10 +27,28 @@ let userSchema = mongoose.Schema({
   }]
 });
 
+let genreSchema = mongoose.Schema({
+  Name: {type: String, required: true},
+  Description:{type: String, required: true}
+});
+
+let directorSchema = mongoose.Schema({
+  Name: {type: String, required: true},
+  Bio: {type: String, required: true},
+  Birthday: Date,
+  Deathday: Date
+});
+
+
+
 // Building models
-let Movie = mongoose.model("Movie", movieSchema);
-let User = mongoose.model("User", userSchema);
+let Movie = mongoose.model("Movie", movieSchema),
+    User = mongoose.model("User", userSchema),
+    Genre = mongoose.model("Genre", genreSchema),
+    Director = mongoose.model("Director", directorSchema);
 
 // Exporting models
 module.exports.Movie = Movie;
 module.exports.User = User;
+module.exports.Genre = Genre;
+module.exports.Director = Director;
