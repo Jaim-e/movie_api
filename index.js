@@ -21,11 +21,9 @@ const Movies = Models.Movie,
       Genres = Models.Genre,
       Directors = Models.Director;
 
-// Allowing Mongoose to connect to my database
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// Allowing Mongoose to connect between my local/online database
+/* mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser: true, useUnifiedTopology: true }); */
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // To access the body of a request using req.body (middleware for parsing json objects)
 app.use(bodyParser.json());
@@ -57,71 +55,6 @@ let auth = require("./auth")(app);
 // Requiring the Passport module and importing passport.js
 const passport = require("passport");
 require("./passport");
-
-
-// Movies
-/*let movies = [
-  {
-    title: "Contact",
-    genre: ["Drama", "Sci-Fi"],
-    director: "Robert Zemeckis",
-    stars: ["Jodie Foster", "Matthew McConaughey"]
-  },
-  {
-    title: "Matrix",
-    genre: ["Action", "Sci-Fi"],
-    director: "The Wachowski Sisters",
-    stars: ["Keanu Reeves", "Laurence Fishburne"]
-  },
-  {
-    title: "Jaws",
-    genre: ["Adventure", "Thriller"],
-    director: "Steven Spielberg",
-    stars: ["Roy Scheider", "Robert Shaw", "Richard Dreyfuss"]
-  },
-  {
-    title: "X-Men",
-    genre: ["Action", "Sci-Fi"],
-    director: "Bryan Singer",
-    stars: ["Ian McKellen", "Patrick Stewart", "Hugh Jackman"]
-  },
-  {
-    title: "Jurassic Park",
-    genre: ["Adventure", "Sci-Fi"],
-    director: "Steven Spielberg",
-    stars: ["Richard Attenborough", "Sam Neill", "Laura Dern", "Jeff Goldblum"]
-  }, 
-  {
-    title: "Amelie",
-    genre: ["Comedy", "Romance"],
-    director: "Jean-Pierre Jeunet",
-    stars: ["Audrey Tautou", "Mathieu Kassovitz"]
-  },
-  {
-    title: "Inception",
-    genre: ["Action", "Sci-Fi"],
-    director: "Christopher Nolan",
-    stars: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"]
-  },
-  {
-    title: "El Abuelo",
-    genre: ["Drama"],
-    director: "José Luis Garci",
-    stars: ["Fernando Fernán Gómez", "Rafael Alonso", "Cayetana Guillén Cuervo"]
-  },
-  {
-    title: "Gravity",
-    genre: ["Drama", "Sci-Fi"],
-    director: "Alfonso Cuarón",
-    stars: ["Sandra Bullock", "George Clooney", "Ed Harris"]
-  },
-  {
-    title: "Life is Beautiful",
-    genre: ["Comedy", "Drama"],
-    director: "Roberto Benigni",
-    stars: ["Roberto Benigni", "Nicoletta Braschi"]
-  }
-]*/
 
 
 // GET REQUESTS:
