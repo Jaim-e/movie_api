@@ -3,7 +3,7 @@
 A Movie API
 
 
-### Objective
+## Objective
 
 To build the server-side component of a “movies” web application.
 
@@ -16,7 +16,7 @@ The web application will provide users to do the followig actions:
 6. Delete their own account
 
 
-### Essential Features
+## Essential Features
 
 - Return a list of ALL movies to the user
 - Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
