@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("common"));
 
 // Allowing requests from a certain list of domains
-let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234"];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin)
@@ -66,12 +66,12 @@ app.get("/", (req, res) => {
 
 
 // Get All Movies
-app.get("/movies", passport.authenticate("jwt", { session: false }), (req, res) => {
+app.get("/movies", function (req, res) {
   Movies.find()
-  .then((movies) => {
+  .then(function (movies) {
     res.status(201).json(movies);
   })
-  .catch((err) => {
+  .catch(function(err) {
     console.error(err);
     res.status(500).send("Error: " + err);
   });
