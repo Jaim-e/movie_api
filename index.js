@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("common"));
 
 // Allowing requests from a certain list of domains
-let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234"];
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234", "https://www.accioncine.es"];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin)
