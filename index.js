@@ -38,8 +38,7 @@ app.use(morgan("common"));
 let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234", "https://www.accioncine.es", "https://www.imdb.com"];
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin)
-    return callback(null, true);
+    if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
       // If a specific origin isn't found on the list of allowed origins
       let message = "The CORS policy for this application doesn't allow access from origin " + origin;
@@ -66,12 +65,12 @@ app.get("/", (req, res) => {
 
 
 // Get All Movies
-app.get("/movies", passport.authenticate("jwt", { session: false }), function (req, res) {
+app.get("/movies", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.find()
-  .then(function (movies) {
+  .then((movies) => {
     res.status(201).json(movies);
   })
-  .catch(function (error) {
+  .catch((error) => {
     console.error(error);
     res.status(500).send("Error: " + error);
   });
