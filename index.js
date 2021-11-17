@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 app.get("/movies", passport.authenticate("jwt", { session: false }), function (req, res) {
   Movies.find()
   .then(function (movies) {
-    res.status(201).json(movies);
+    res.status(201).set("Access-Control-Allow-Origin", "*").json(movies);
   })
   .catch(function (error) {
     console.error(error);
