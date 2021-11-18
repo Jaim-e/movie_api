@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("common"));
 
 // Allowing requests from a certain list of domains
+/*
 let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234", "https://www.accioncine.es", "https://www.imdb.com"];
 app.use(cors({
   origin: (origin, callback) => {
@@ -47,6 +48,10 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+*/
+app.use(cors());
+
+
 
 // Importing auth.js into the project and allow using Express
 let auth = require("./auth")(app);
