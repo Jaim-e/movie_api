@@ -2,14 +2,40 @@
 const express = require("express"),
       bodyParser = require("body-parser"),
       uuid = require("uuid"),
-      morgan = require("morgan"),
-      cors = require("cors");
+      morgan = require("morgan");
+
+// Declaring a new variable to encapsulate the Express' functionality
+const app = express();
 
 // Importing Express-Validator
 const { check, validationResult } = require("express-validator");
 
-// Declaring a new variable to encapsulate the Express' functionality      
-const app = express();
+// Importing CORS
+const cors = require("cors");
+
+// Allowing requests from a certain list of domains
+let allowedOrigins = [
+  "http://localhost:8080",
+  "http://testsite.com",
+  "https://secure-coast-98530.herokuapp.com/",
+  "http://localhost:1234",
+  "https://www.accioncine.es",
+  "https://www.imdb.com"
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        //If a specific origin isn’t found on the list of allowed origins
+        let message = "The CORS policy for this application doesn`t allow accsess from origin " + origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 // Importing Mongoose and Models
 const mongoose = require("mongoose"),
@@ -22,24 +48,31 @@ const Movies = Models.Movie,
       Directors = Models.Director;
 
 // Allowing Mongoose to connect between my local/online database
-/* mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser: true, useUnifiedTopology: true }); */
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+/*
+mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+*/
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // To access the body of a request using req.body (middleware for parsing json objects)
 app.use(bodyParser.json());
 
 // Return middleware that only parses {urlencoded} bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Logging all request to the terminal
 app.use(morgan("common"));
 
-// Allowing requests from a certain list of domains
-//let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:1234", "https://www.accioncine.es", "https://www.imdb.com"];
-app.use(cors());
 
 // Importing auth.js into the project and allow using Express
-let auth = require("./auth")(app);
+const auth = require("./auth")(app);
 
 // Requiring the Passport module and importing passport.js
 const passport = require("passport");
