@@ -19,8 +19,8 @@ let allowedOrigins = [
   "http://testsite.com",
   "https://secure-coast-98530.herokuapp.com/",
   "http://localhost:1234",
-  "https://www.accioncine.es",
-  "https://www.imdb.com"
+  "https://www.accioncine.es/",
+  "https://www.imdb.com/"
 ];
 
 app.use(
